@@ -85,6 +85,18 @@ function App() {
       });
   }
 
+  function markTodo(todo) {
+    if (done) {
+      todo = false;
+      editTodo(done, id);
+      getTodos();
+    } else if (!done) {
+      todo = true;
+      editTodo(done, id);
+      getTodos();
+    }
+  }
+
   // Hämta och ändra värde hos det angivna task eller ${id}
   // I kombination av GET & DELETE.
 
@@ -123,7 +135,7 @@ function App() {
                 className="doneButton"
                 type="button"
                 onClick={() => {
-                  editTodo(todo);
+                  editTodo(todo) ? markTodo(todo) : editTodo(todo);
                 }}
               >
                 {" "}
